@@ -1,0 +1,62 @@
+<h1>Cucumber complex expressions</h1>
+
+<section>
+    <h2>Inputs</h2>
+    <div class="space-vertical">
+        <label [for]="inputId"> Input: </label>
+        <input [(ngModel)]="inputModel" [id]="inputId" placeholder="Type something...">
+    </div>
+    <div class="space-vertical">
+        Input's value: <span [id]="inputCopyId">{{inputModel}}</span>
+    </div>
+</section>
+
+<section>
+    <h2>Lists</h2>
+    <div class="space-vertical">
+        <button (click)="addNewElementToList($event)"
+                [id]="listAddElementId">
+            Add an element to a list
+        </button>
+    </div>
+    <div class="space-vertical">
+        <button (click)="removeElementToList($event)"
+                [disabled]="listElements.length===0"
+                [id]="listRemoveElementId">
+            Remove an element from a list
+        </button>
+    </div>
+    <ul [id]="listId">
+        <li *ngFor="let listElement of listElements">{{listElement}}</li>
+    </ul>
+</section>
+<section>
+    <h2>Dropdowns</h2>
+    <div class="space-vertical">
+        <button (click)="addNewDropdownEntry($event)">
+            Add a new entry to a dropdown
+        </button>
+    </div>
+    <div class="space-vertical">
+        <label [for]="dropdownId">
+            Choose a dropdown element:
+        </label>
+        <select [(ngModel)]="dropdownModel" [id]="dropdownId">
+            <option value="Example dropdown element">Example dropdown element</option>
+            <option value="Next dropdown element">Next dropdown element</option>
+            <option value="Another dropdown element">Another dropdown element</option>
+            <option *ngFor="let dropdownElement of dropdownElements" [value]="dropdownElement">
+                {{dropdownElement}}
+            </option>
+        </select>
+        <div>
+            Dropdown's value: <span [id]="dropdownValueBelowId">{{dropdownModel}}</span>
+        </div>
+    </div>
+</section>
+<section>
+    <h2>Popup</h2>
+    <div *ngIf="isPopupVisible" [id]="popupId" class="border">
+        <button (click)="closePopup($event)">Close me!</button>
+    </div>
+</section>
